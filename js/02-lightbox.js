@@ -1,19 +1,20 @@
 import { galleryItems } from './gallery-items.js';
-// Change code below this line
+const galleryEl = document.querySelector(".gallery");
 
-console.log(galleryItems);
+const pictureCards = createPictureGalery(galleryItems);
+galleryEl.insertAdjacentHTML('beforeend', pictureCards);
 
-function createPictureGalery (){
-// const picture = galleryItems.map((elem) =>{
-//     return
-//     `
-//     <li class="gallery__item">
-//    <a class="gallery__link" href="large-image.jpg">
-//       <img class="gallery__image" src="small-image.jpg" alt="Image description" />
-//    </a>
-// </li>
-//     `
-    
-// });
-console.log(galleryItems);
+function createPictureGalery (item){
+return galleryItems.map(({preview, original, description}) =>{
+    return`
+    <li class="gallery__item">
+   <a class="gallery__link" href="${original}">
+      <img class="gallery__image" src="${preview}" alt="${description}" />
+   </a>
+</li>
+    `  
+}).join("");
 }
+var lightbox = new SimpleLightbox('.gallery a', 
+{captionsData: "alt", captionDelay: "250"})
+
